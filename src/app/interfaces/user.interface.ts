@@ -4,6 +4,7 @@ export interface LoginData {
 }
 
 export interface LoginResponse {
+  id: string;
   name: string;
   email: string;
   accessToken: string;
@@ -11,8 +12,11 @@ export interface LoginResponse {
 }
 
 export interface Usuario {
+  _id: string;
   name: string;
   email: string;
+  role: string;
   accessToken: string;
   refreshToken: string;
+  password?: string;
 }

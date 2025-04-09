@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { Usuario } from './interfaces/user.interface';
 
 export const routes: Routes = [
   {
@@ -41,5 +42,26 @@ export const routes: Routes = [
       import('./pages/vehiculo-form/vehiculo-form.page').then(
         (m) => m.VehiculoFormPage
       ),
+  },{
+    path: 'usuario',
+    loadComponent: () =>
+      import('./pages/usuario/usuario.page').then((m) => m.UsuarioPage),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'usuario/nuevo',
+    loadComponent: () =>
+      import('./pages/usuario-form/usuario-form.page').then(
+        (m) => m.UsuarioFormPage
+      ),
+      canActivate: [AuthGuard],
+  },
+  {
+    path: 'usuario/editar/:id',
+    loadComponent: () =>
+      import('./pages/usuario-form/usuario-form.page').then(
+        (m) => m.UsuarioFormPage
+      ),
+      canActivate: [AuthGuard],
   },
 ];

@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancelar()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ isEdit ? 'Editar Usuario' : 'Nuevo Usuario' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="usuarioForm" (ngSubmit)="guardarUsuario()">
+
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input name="name" formControlName="name"></ion-input>
+    </ion-item>
+    @if(usuarioForm.get('name')?.invalid &&
+    usuarioForm.get('name')?.touched) {
+    <ion-text color="danger">
+      <p>El nombre es requerido</p>
+    </ion-text>
+    }
+
+    <ion-item>
+      <ion-label position="stacked">Correo</ion-label>
+      <ion-input name="email" formControlName="email"></ion-input>
+    </ion-item>
+    @if(usuarioForm.get('email')?.invalid &&
+    usuarioForm.get('email')?.touched) {
+    <ion-text color="danger">
+      <p>El email es requerido</p>
+    </ion-text>
+    }
+
+    <ion-item>
+      <ion-label position="stacked">Contraseña</ion-label>
+      <ion-input name="password" formControlName="password" type="password"></ion-input>
+    </ion-item>
+   
+    <ion-item>
+      <ion-label position="stacked">Repita la contraseña</ion-label>
+      <ion-input name="password2" formControlName="password2" type="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Rol</ion-label>
+      <ion-input name="role" formControlName="role"></ion-input>
+    </ion-item>
+    @if(usuarioForm.get('rol')?.invalid &&
+    usuarioForm.get('rol')?.touched) {
+    <ion-text color="danger">
+      <p>El rol es requerido</p>
+    </ion-text>
+    }
+
+    <ion-button expand="full" type="submit" [disabled]="usuarioForm.invalid">
+      Guardar
+    </ion-button>
+  </form>
+</ion-content>

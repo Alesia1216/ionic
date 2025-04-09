@@ -1,0 +1,62 @@
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-toggle menu="main-menu">
+          <ion-menu-button></ion-menu-button>
+        </ion-menu-toggle>
+      </ion-buttons>
+      <ion-title>Usuarios</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="goHome()">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    <ion-searchbar
+      [(ngModel)]="searchQuery"
+      debounce="500"
+      show-clear-button="focus"
+      placeholder="Buscar por email..."
+      (ionInput)="filterUsuario()"
+    >
+    </ion-searchbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-list>
+      @for(usuario of filteredUsuarios; track usuario; let i =$index) {
+      <ion-item-sliding>
+        <ion-item>
+          <ion-label>
+            <h2>{{ usuario.name}}</h2>
+            <p>
+              Correo: {{ usuario.email }} 
+            </p>
+            <p>
+              Rol: {{usuario.role}}
+            </p>
+          </ion-label>
+        </ion-item>
+        <ion-item-options side="start">
+          <ion-item-option color="warning" (click)="editUsuario(usuario)">
+            <ion-icon slot="start" name="create-outline"></ion-icon>
+            Editar
+          </ion-item-option>
+        </ion-item-options>
+
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="deleteUsuario(usuario)">
+            <ion-icon slot="start" name="trash-outline"></ion-icon>
+            Eliminar
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+      }
+    </ion-list>
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button (click)="createUsuario()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-content>
+</div>

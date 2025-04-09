@@ -14,7 +14,7 @@ import {
   IonMenuToggle,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { homeOutline, carOutline } from 'ionicons/icons';
+import { homeOutline, carOutline, people } from 'ionicons/icons';
 
 @Component({
   selector: 'app-root',
@@ -37,10 +37,7 @@ import { homeOutline, carOutline } from 'ionicons/icons';
 })
 export class AppComponent {
   constructor(private menuCtrl: MenuController) {
-    addIcons({
-      homeOutline,
-      carOutline,
-    });
+    addIcons({homeOutline,carOutline,people,});
   }
   closeMenu() {
     console.log('Cierra menu');
