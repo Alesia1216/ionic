@@ -3,8 +3,12 @@ import { CommonModule } from '@angular/common';
 import { NavController } from '@ionic/angular/standalone';
 import { AuthService } from '../../services/auth.service';
 import { ToastService } from '../../services/toast.service';
-
-// Componentes específicos de IONIC
+import { LoginResponse, Usuario } from '../../interfaces/user.interface';
+import { StorageService } from '../../services/storage.service';
+import { NotificationService } from '../../services/notification.service';
+import { UsuarioService } from '../../services/usuario.service';
+import { firstValueFrom } from 'rxjs';
+import { MenuService } from '../../services/menu.service';
 import {
   FormBuilder,
   FormGroup,
@@ -22,8 +26,6 @@ import {
   IonText,
   IonInput,
 } from '@ionic/angular/standalone';
-import { StorageService } from '../../services/storage.service';
-import { LoginResponse } from 'src/app/interfaces/user.interface';
 
 @Component({
   selector: 'app-login',
@@ -45,21 +47,28 @@ import { LoginResponse } from 'src/app/interfaces/user.interface';
   ],
 })
 export class LoginPage implements OnInit {
+
   loginForm: FormGroup;
   private toastService = inject(ToastService);
   private storageService = inject(StorageService);
   private authService = inject(AuthService);
+  private notificationService = inject(NotificationService);
+  private usuarioService = inject(UsuarioService);
+  private menuService = inject(MenuService);
+
   constructor(private navCtrl: NavController, private fb: FormBuilder) {
+
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
+
   }
 
   ngOnInit() {}
 
   onSubmit() {
-    if (this.loginForm.invalid) return; // Evita envíos si el formulario es inválido
+    if (this.loginForm.invalid) return;
 
     this.authService
       .login(this.loginForm.value.email, this.loginForm.value.password)
@@ -69,7 +78,25 @@ export class LoginPage implements OnInit {
           await this.storageService.set('plannerstats-user', response);
           this.authService.setAccessToken(response.accessToken);
           this.authService.setRefreshToken(response.refreshToken);
-          this.navCtrl.navigateForward('/home'); // Redirige a la página principal
+
+          // Actualizar el playerId
+          const playerId = await this.notificationService.getOneSignalId();
+          let user: Usuario = response;
+          if (playerId) {
+            user.playerId = playerId;
+            try {
+              console.log('Usuario a actualizar', user);
+              await firstValueFrom(this.usuarioService.updateUsuario(user));
+              await this.notificationService.setExternalId(user._id);
+              console.log('Usuario actualizado con Player ID');
+            } catch (err) {
+              console.error('Error actualizando el usuario:', err);
+            }
+          }
+          await this.notificationService.setAliasOneSignal(user.name);
+          this.menuService.cargarMenus();
+          console.log('menu de', user.role);
+          this.navCtrl.navigateForward('/home'); 
         },
         error: (error) => {
           console.error('Error en el login', error);
