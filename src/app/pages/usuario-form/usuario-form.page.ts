@@ -8,7 +8,8 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import {
+import 
+{
   IonContent,
   IonHeader,
   IonTitle,
@@ -19,7 +20,9 @@ import {
   IonItem,
   IonLabel,
   IonInput,
-  IonText,
+  IonText, 
+  IonRadio, 
+  IonRadioGroup 
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { closeOutline } from 'ionicons/icons';
@@ -32,6 +35,8 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   templateUrl: './usuario-form.page.html',
   styleUrls: ['./usuario-form.page.css'],
   imports: [
+    IonRadioGroup, 
+    IonRadio, 
     IonText,
     IonContent,
     IonHeader,

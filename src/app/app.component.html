@@ -7,24 +7,14 @@
     </ion-header>
     <ion-content>
       <ion-list>
+        @for(menuItem of menuList; track menuItem; let i=$index){
         <ion-menu-toggle auto-hide="false">
-          <ion-item routerLink="/home">
-            <ion-icon name="home-outline" slot="start"></ion-icon>
-            <ion-label>Inicio</ion-label>
+          <ion-item [routerLink]="menuItem.link">
+            <ion-icon [name]="menuItem.icon" slot="start"></ion-icon>
+            <ion-label>{{ menuItem.label }}</ion-label>
           </ion-item>
         </ion-menu-toggle>
-        <ion-menu-toggle auto-hide="false">
-          <ion-item routerLink="/vehiculo">
-            <ion-icon name="car-outline" slot="start"></ion-icon>
-            <ion-label>Vehiculos</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle auto-hide="false">
-          <ion-item routerLink="/usuario">
-            <ion-icon name="people" slot="start"></ion-icon>
-            <ion-label>Usuarios</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
+        }
       </ion-list>
     </ion-content>
   </ion-menu>

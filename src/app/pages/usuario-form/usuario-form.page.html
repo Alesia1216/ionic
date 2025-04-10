@@ -38,13 +38,13 @@
       <ion-label position="stacked">Contraseña</ion-label>
       <ion-input name="password" formControlName="password" type="password"></ion-input>
     </ion-item>
-   
+
     <ion-item>
       <ion-label position="stacked">Repita la contraseña</ion-label>
       <ion-input name="password2" formControlName="password2" type="password"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <!-- <ion-item>
       <ion-label position="stacked">Rol</ion-label>
       <ion-input name="role" formControlName="role"></ion-input>
     </ion-item>
@@ -53,7 +53,22 @@
     <ion-text color="danger">
       <p>El rol es requerido</p>
     </ion-text>
-    }
+    } -->
+
+    <ion-item>
+      <ion-label position="stacked">Rol</ion-label>
+      <ion-radio-group value="user" name="role" formControlName="role"
+        style="display: flex; gap: 16px; margin-top: 8px;">
+        <ion-item lines="none" style="--min-height: auto;">
+          <ion-radio slot="start" value="user"></ion-radio>
+          <ion-label>User</ion-label>
+        </ion-item>
+        <ion-item lines="none" style="--min-height: auto;">
+          <ion-radio slot="start" value="admin"></ion-radio>
+          <ion-label>Admin</ion-label>
+        </ion-item>
+      </ion-radio-group>
+    </ion-item>
 
     <ion-button expand="full" type="submit" [disabled]="usuarioForm.invalid">
       Guardar
