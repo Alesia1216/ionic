@@ -64,4 +64,44 @@ export const routes: Routes = [
       ),
       canActivate: [AuthGuard],
   },
+  {
+    path: 'mensaje',
+    loadComponent: () =>
+      import('./pages/mensaje/mensaje.page').then(
+        (m) => m.MensajePage
+    ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'mensaje/nuevo',
+    loadComponent: () =>
+      import('./pages/mensaje-form/mensaje-form.page').then(
+        (m) => m.MensajeFormPage
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'mensaje/editar/:id',
+    loadComponent: () =>
+      import('./pages/mensaje-form/mensaje-form.page').then(
+        (m) => m.MensajeFormPage
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'mensaje-detalle/:id',
+    loadComponent: () =>
+      import('./pages/mensaje-detalle/mensaje-detalle.page').then(
+        (m) => m.MensajeDetallePage
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'mensaje-usuario',
+    loadComponent: () =>
+      import('./pages/mensaje-usuario/mensaje-usuario.page').then(
+        (m) => m.MensajeUsuarioPage
+      ),
+    canActivate: [AuthGuard],
+  },
 ];

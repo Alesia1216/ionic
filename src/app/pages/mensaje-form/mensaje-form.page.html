@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancelar()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ isEdit ? 'Editar Mensaje' : 'Nuevo Mensaje' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="mensajeForm" (ngSubmit)="guardarMensaje()">
+    <ion-item>
+      <ion-label position="stacked">Audiencia</ion-label>
+      <ion-select formControlName="audience">
+        <ion-select-option value="all">Todos</ion-select-option>
+        <ion-select-option value="single">Usuario específico</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Mostrar solo si la audiencia es "single" -->
+    @if(mensajeForm.get('audience')?.value === 'single') {
+      <ion-item>
+        <ion-label position="stacked">Seleccionar usuario</ion-label>
+        <ion-input
+          formControlName="searchTerm"
+          (ionInput)="filtrarUsuarios()"
+          placeholder="Escriba para buscar..."
+        ></ion-input>
+      </ion-item>
+    @if(usuariosFiltrados.length > 0) {
+    <ion-list>
+      @for(user of usuariosFiltrados; track user) {
+      <ion-item button class="user-item" (click)="seleccionarUsuario(user)">
+        <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+        {{ user.name }}
+      </ion-item>
+      }
+    </ion-list>
+    } }
+    <ion-item>
+      <ion-label position="stacked">Título</ion-label>
+      <ion-input name="title" formControlName="title"></ion-input>
+    </ion-item>
+    @if(mensajeForm.get('title')?.invalid && mensajeForm.get('title')?.touched)
+    {
+    <ion-text color="danger">
+      <p>El título es requerido</p>
+    </ion-text>
+    }
+
+    <ion-item>
+      <ion-label position="stacked">Mensaje</ion-label>
+      <ion-textarea
+        name="body"
+        formControlName="body"
+        autoGrow="true"
+      ></ion-textarea>
+    </ion-item>
+    @if(mensajeForm.get('body')?.invalid && mensajeForm.get('body')?.touched) {
+    <ion-text color="danger">
+      <p>El mensaje es requerido</p>
+    </ion-text>
+    }
+    <ion-button expand="full" type="submit" [disabled]="mensajeForm.invalid">
+      Guardar
+    </ion-button>
+    <!-- Botón "Guardar y Enviar" -->
+    <ion-button
+      expand="full"
+      color="secondary"
+      [disabled]="mensajeForm.invalid || (isEdit && mensajeForm.value.sentAt)"
+      (click)="guardarMensaje(true)"
+    >
+      {{ isEdit ? 'Enviar' : 'Guardar y Enviar' }}
+    </ion-button>
+  </form>
+</ion-content>

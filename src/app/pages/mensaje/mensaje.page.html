@@ -1,0 +1,76 @@
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-toggle menu="main-menu">
+          <ion-menu-button></ion-menu-button>
+        </ion-menu-toggle>
+      </ion-buttons>
+      <ion-title>Mensajes</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="goHome()">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    <ion-searchbar
+      [(ngModel)]="searchQuery"
+      debounce="500"
+      show-clear-button="focus"
+      placeholder="Buscar por título..."
+      (ionInput)="searchMensaje()"
+    >
+    </ion-searchbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-list>
+      <ion-item-sliding
+        *ngFor="let mensaje of filteredMensajes; trackBy: trackByFn"
+      >
+        <ion-item (click)="goToDetalle(mensaje)">
+          <ion-label>
+            <h2>{{ mensaje.title }}</h2>
+            <p *ngIf="mensaje.createdAt">
+              Creado el: {{ mensaje.createdAt | date: 'dd/MM/yyyy HH:mm' }}
+            </p>
+            <p *ngIf="mensaje.sentAt">
+              Enviado el: {{ mensaje.sentAt | date: 'dd/MM/yyyy HH:mm' }}
+            </p>
+          </ion-label>
+          <ion-icon
+            slot="end"
+            name="checkmark-circle-outline"
+            color="success"
+            *ngIf="mensaje.sentAt"
+          ></ion-icon>
+          <ion-icon
+            slot="end"
+            name="hourglass-outline"
+            color="warning"
+            *ngIf="!mensaje.sentAt"
+          ></ion-icon>
+        </ion-item>
+
+        <!-- Opciones de deslizamiento (Editar/Eliminar) -->
+        <ion-item-options side="start">
+          <ion-item-option color="warning" (click)="editMensaje(mensaje)">
+            <ion-icon slot="start" name="create-outline"></ion-icon>
+            Editar
+          </ion-item-option>
+        </ion-item-options>
+
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="deleteMensaje(mensaje)">
+            <ion-icon slot="start" name="trash-outline"></ion-icon>
+            Eliminar
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button (click)="createMensaje()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-content>
+</div>
