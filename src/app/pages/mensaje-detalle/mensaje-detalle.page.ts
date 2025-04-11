@@ -30,6 +30,7 @@ import {
 import { addIcons } from 'ionicons';
 import { peopleOutline, documentOutline } from 'ionicons/icons';
 import { UsuarioHeaderComponent } from "../../components/usuario-header/usuario-header.component";
+import { FooterComponent } from "../../components/footer/footer.component";
 //import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
@@ -58,7 +59,8 @@ import { UsuarioHeaderComponent } from "../../components/usuario-header/usuario-
     IonLabel,
     IonList,
     IonItem,
-    UsuarioHeaderComponent
+    UsuarioHeaderComponent,
+    FooterComponent
 ],
 })
 export class MensajeDetallePage implements OnInit {

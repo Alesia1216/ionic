@@ -1,6 +1,7 @@
 export const environment = {
   production: false,
   appName: 'MiApp Test',
+  version: '1.0.0',
   //apiBaseUrl: 'http://localhost:3000/plannerstats',
   apiBaseUrl: 'https://api-dev.softoursistemas.org/plannerstats',
   oneSignal: {

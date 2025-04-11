@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { logOutOutline } from 'ionicons/icons';
 import { UsuarioHeaderComponent } from "../../components/usuario-header/usuario-header.component";
+import { FooterComponent } from "../../components/footer/footer.component";
 
 @Component({
   selector: 'app-home',
@@ -31,7 +32,8 @@ import { UsuarioHeaderComponent } from "../../components/usuario-header/usuario-
     IonButton,
     IonIcon,
     IonMenuToggle,
-    UsuarioHeaderComponent
+    UsuarioHeaderComponent,
+    FooterComponent
 ],
 })
 export class HomePage implements OnInit {

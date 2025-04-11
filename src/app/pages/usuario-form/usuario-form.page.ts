@@ -30,6 +30,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/services/toast.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { UsuarioHeaderComponent } from "../../components/usuario-header/usuario-header.component";
+import { FooterComponent } from "../../components/footer/footer.component";
 
 @Component({
   selector: 'app-usuario-form',
@@ -50,7 +51,8 @@ import { UsuarioHeaderComponent } from "../../components/usuario-header/usuario-
     IonLabel,
     IonInput,
     ReactiveFormsModule,
-    UsuarioHeaderComponent
+    UsuarioHeaderComponent,
+    FooterComponent
 ],
 })
 export class UsuarioFormPage implements OnInit {

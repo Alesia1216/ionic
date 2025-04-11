@@ -34,6 +34,7 @@ import { Usuario } from 'src/app/interfaces/user.interface';
 import { ToastService } from 'src/app/services/toast.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { UsuarioHeaderComponent } from "../../components/usuario-header/usuario-header.component";
+import { FooterComponent } from "../../components/footer/footer.component";
 
 @Component({
   selector: 'app-usuario',
@@ -60,7 +61,8 @@ import { UsuarioHeaderComponent } from "../../components/usuario-header/usuario-
     IonLabel,
     IonSearchbar,
     IonMenuToggle,
-    UsuarioHeaderComponent
+    UsuarioHeaderComponent,
+    FooterComponent
 ],
 })
 export class UsuarioPage implements OnInit {
