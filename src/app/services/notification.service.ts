@@ -10,11 +10,13 @@ export class NotificationService {
 
   constructor(
     private oPlatform: Platform,
+    private oRouter: Router,
+    private oStorageService: StorageService,
+    private oMensajeService: MensajeService
   ) { }
 
 
   async initialize(){
-    console.log('Initialize', this.oPlatform.is('capacitor'));
     if (this.oPlatform.is('capacitor')) {
       console.log('OneSignal setupPush');
       OneSignal.Debug.setLogLevel(6);
@@ -25,16 +27,36 @@ export class NotificationService {
       OneSignal.Notifications.addEventListener('click', async (e) => {
         let clickData = await e.notification;
         console.log('Notification Clicked : ' + JSON.stringify(clickData));
+        const usuario = await this.storageService.get('plannerstats-user');
+        const datos: MensajeLeido = {
+          messageId: clickData.additionalData.messageId,
+          userId: usuario._id,
+        };
+        // Marcar el mensaje como leido.
+        await firstValueFrom(this.mensajeService.recivedMensaje(datos));
+        // Navegar a la página de detalles del mensaje
+        const messageId = clickData.additionalData.messageId;
+        if (messageId) {
+          // Navegar a la página de detalles pasando el ID del mensaje como parámetro
+          this.router.navigate(['/mensaje-detalle', messageId]);
+        }
       });
+
 
       OneSignal.Notifications.requestPermission(true).then(
         (success: Boolean) => {
           console.log('Notification permission granted ' + success);
         }
       );
-      this.getOneSignalId();
+      OneSignal.User.pushSubscription.optIn();
+      console.log('🔁 Forzando suscripción del usuario');
+
+      // Obtener OneSignal ID
+      const oneSignalId = await this.getOneSignalId();
+      console.log('🆔 OneSignal User ID:', oneSignalId);
     }
   }
+
 
   async getOneSignalId(): Promise<string | null> {
 
