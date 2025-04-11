@@ -91,12 +91,16 @@ export class MensajeFormPage implements OnInit {
   }
 
   ngOnInit() {
-    this.loadUsuarios(); // Cargar usuarios al iniciar
     const id = this.oActivatedRoute.snapshot.paramMap.get('id');
     if (id) {
       this.intId = id;
       this.isEdit = true;
       this.cargarMensaje(id);
+
+      this.loadUsuarios();
+      this.cargarMensaje(id);
+    }else{
+      this.loadUsuarios(); // Cargar usuarios al iniciar
     }
   }
 
