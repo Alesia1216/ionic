@@ -23,7 +23,9 @@ export class NotificationService {
 
 
   async initialize(){
+    console.log('se va a ejecutar capacitor y ha dado:');
     if (this.oPlatform.is('capacitor')) {
+      console.log('es capacitor');
       console.log('OneSignal setupPush');
       OneSignal.Debug.setLogLevel(6);
 
@@ -60,6 +62,8 @@ export class NotificationService {
       // Obtener OneSignal ID
       const oneSignalId = await this.getOneSignalId();
       console.log('OneSignal User ID:', oneSignalId);
+    }else{
+      console.log('no es capacitor');
     }
   }
 

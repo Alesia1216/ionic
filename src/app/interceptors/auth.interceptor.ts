@@ -21,7 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     // Obtenemos el accessToken directamente desde el AuthService
     const accessToken = this.authService.getAccessToken();
-    console.log('Interceptor acctk', accessToken);
+    //console.log('Interceptor acctk', accessToken);
     if (accessToken) {
       req = req.clone({
         setHeaders: {
