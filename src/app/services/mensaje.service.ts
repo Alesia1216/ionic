@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Mensaje } from '../interfaces/mensaje.interface';
+import { Mensaje, MensajeLeido } from '../interfaces/mensaje.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +39,10 @@ export class MensajeService {
 
   deleteMensaje(mensaje: Mensaje): Observable<Mensaje> {
     return this.oHttp.delete<Mensaje>(`${this.apiUrl}/${mensaje._id}`);
+  }
+
+  recivedMensaje(datos: MensajeLeido): Observable<string> {
+    return this.oHttp.post<string>(`${this.apiUrl}/recived`, datos);
   }
 
 }
