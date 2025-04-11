@@ -56,8 +56,9 @@ export class NotificationService {
           console.log('Notification permission granted ' + success);
         }
       );
-      OneSignal.User.pushSubscription.optIn();
-      console.log('Forzando suscripción del usuario');
+      
+      // OneSignal.User.pushSubscription.optIn();
+      // console.log('Forzando suscripción del usuario');
 
       // Obtener OneSignal ID
       const oneSignalId = await this.getOneSignalId();

@@ -7,22 +7,66 @@
   </ion-toolbar>
   <app-usuario-header></app-usuario-header>
 </ion-header>
+
 <ion-content class="ion-padding">
-  <div *ngIf="mensaje">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>{{ mensaje.title }}</ion-card-title>
-        <ion-card-subtitle>
-          <p>Creado el: {{ mensaje.createdAt | date: 'dd/MM/yyyy HH:mm' }}</p>
-          <p *ngIf="mensaje.sentAt">
-            Enviado el: {{ mensaje.sentAt | date: 'dd/MM/yyyy HH:mm' }}
-          </p>
-        </ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        <p>{{ mensaje.body }}</p>
-      </ion-card-content>
-    </ion-card>
-  </div>
+  <ion-tabs>
+    <!-- Tab Bar -->
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="info">
+        <span style="display: flex; align-items: center">
+          <ion-icon
+            name="document-outline"
+            slot="start"
+            style="font-size: 16px"
+          ></ion-icon>
+          <ion-label style="font-size: 16px">Información</ion-label>
+        </span>
+      </ion-tab-button>
+      <ion-tab-button tab="usuarios">
+        <span style="display: flex; align-items: center">
+          <ion-icon
+            name="people-outline"
+            slot="start"
+            style="font-size: 16px"
+          ></ion-icon>
+          <ion-label style="font-size: 16px">Leído por</ion-label>
+        </span>
+      </ion-tab-button>
+    </ion-tab-bar>
+
+    <!-- Tab Content -->
+    <ion-tab tab="info">
+      <div *ngIf="mensaje">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ mensaje.title }}</ion-card-title>
+            <ion-card-subtitle>
+              <p>
+                Creado el: {{ mensaje.createdAt | date: 'dd/MM/yyyy HH:mm' }}
+              </p>
+              <p *ngIf="mensaje.sentAt">
+                Enviado el: {{ mensaje.sentAt | date: 'dd/MM/yyyy HH:mm' }}
+              </p>
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <p>{{ mensaje.body }}</p>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </ion-tab>
+
+    <ion-tab tab="usuarios">
+      <ion-list>
+        <ion-item *ngFor="let lectura of mensaje?.readBy">
+          <ion-label>
+            <h2>{{ lectura.user.name }}</h2>
+            <p>{{ lectura.user.email }}</p>
+            <p>Leído el: {{ lectura.readAt | date: 'dd/MM/yyyy HH:mm' }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-tab>
+  </ion-tabs>
 </ion-content>
 <app-footer></app-footer>
