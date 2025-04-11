@@ -23,6 +23,7 @@ import { VehicleService } from '../../services/vehicle.service';
 import { ToastService } from '../../services/toast.service';
 import { addIcons } from 'ionicons';
 import { closeOutline } from 'ionicons/icons';
+import { UsuarioHeaderComponent } from "../../components/usuario-header/usuario-header.component";
 
 @Component({
   selector: 'app-vehiculo-form',
@@ -42,7 +43,8 @@ import { closeOutline } from 'ionicons/icons';
     IonLabel,
     IonInput,
     ReactiveFormsModule,
-  ],
+    UsuarioHeaderComponent
+],
 })
 export class VehiculoFormPage implements OnInit {
   vehiculoForm: FormGroup;

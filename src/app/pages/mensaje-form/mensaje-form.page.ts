@@ -32,6 +32,7 @@ import { StorageService } from '../../services/storage.service';
 import { Usuario } from '../../interfaces/user.interface';
 import { FormsModule } from '@angular/forms';
 import { take } from 'rxjs';
+import { UsuarioHeaderComponent } from "../../components/usuario-header/usuario-header.component";
 
 @Component({
   selector: 'app-mensaje-form',
@@ -56,7 +57,8 @@ import { take } from 'rxjs';
     IonSelect,
     IonSelectOption,
     FormsModule,
-  ],
+    UsuarioHeaderComponent
+],
 })
 export class MensajeFormPage implements OnInit {
   mensajeForm: FormGroup;

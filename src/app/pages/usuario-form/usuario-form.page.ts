@@ -29,14 +29,15 @@ import { closeOutline } from 'ionicons/icons';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/services/toast.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { UsuarioHeaderComponent } from "../../components/usuario-header/usuario-header.component";
 
 @Component({
   selector: 'app-usuario-form',
   templateUrl: './usuario-form.page.html',
   styleUrls: ['./usuario-form.page.css'],
   imports: [
-    IonRadioGroup, 
-    IonRadio, 
+    IonRadioGroup,
+    IonRadio,
     IonText,
     IonContent,
     IonHeader,
@@ -49,7 +50,8 @@ import { UsuarioService } from 'src/app/services/usuario.service';
     IonLabel,
     IonInput,
     ReactiveFormsModule,
-  ],
+    UsuarioHeaderComponent
+],
 })
 export class UsuarioFormPage implements OnInit {
 

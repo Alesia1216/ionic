@@ -75,12 +75,14 @@ export class LoginPage implements OnInit {
       .subscribe({
         next: async (response: LoginResponse) => {
           console.log('Login exitoso', response);
-          await this.storageService.set('plannerstats-user', response);
+          //await this.storageService.set('plannerstats-user', response);
+          await this.storageService.setUser(response);
           this.authService.setAccessToken(response.accessToken);
           this.authService.setRefreshToken(response.refreshToken);
 
           // Actualizar el playerId
           const playerId = await this.notificationService.getOneSignalId();
+          console.log('PlayerId obtenido', playerId);
           let user: Usuario = response;
           if (playerId) {
             user.playerId = playerId;

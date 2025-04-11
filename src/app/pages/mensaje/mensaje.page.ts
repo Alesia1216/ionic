@@ -36,6 +36,7 @@ import {
   hourglassOutline,
   checkmarkCircleOutline,
 } from 'ionicons/icons';
+import { UsuarioHeaderComponent } from "../../components/usuario-header/usuario-header.component";
 
 @Component({
   selector: 'app-mensaje',
@@ -63,7 +64,8 @@ import {
     IonLabel,
     IonSearchbar,
     IonMenuToggle,
-  ],
+    UsuarioHeaderComponent
+],
 })
 export class MensajePage implements OnInit {
 

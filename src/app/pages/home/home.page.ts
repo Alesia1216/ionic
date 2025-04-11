@@ -14,6 +14,7 @@ import { StorageService } from '../../services/storage.service';
 import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { logOutOutline } from 'ionicons/icons';
+import { UsuarioHeaderComponent } from "../../components/usuario-header/usuario-header.component";
 
 @Component({
   selector: 'app-home',
@@ -30,7 +31,8 @@ import { logOutOutline } from 'ionicons/icons';
     IonButton,
     IonIcon,
     IonMenuToggle,
-  ],
+    UsuarioHeaderComponent
+],
 })
 export class HomePage implements OnInit {
   private storageService = inject(StorageService);

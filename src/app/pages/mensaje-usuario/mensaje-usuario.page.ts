@@ -33,6 +33,7 @@ import {
   notifications,
 } from 'ionicons/icons';
 import { StorageService } from '../../services/storage.service';
+import { UsuarioHeaderComponent } from "../../components/usuario-header/usuario-header.component";
 
 @Component({
   selector: 'app-mensaje-usuario',
@@ -56,7 +57,8 @@ import { StorageService } from '../../services/storage.service';
     IonLabel,
     IonSearchbar,
     IonMenuToggle,
-  ],
+    UsuarioHeaderComponent
+],
 })
 export class MensajeUsuarioPage {
   searchQuery: string = ''; 

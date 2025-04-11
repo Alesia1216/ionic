@@ -33,6 +33,7 @@ import {
 import { Usuario } from 'src/app/interfaces/user.interface';
 import { ToastService } from 'src/app/services/toast.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { UsuarioHeaderComponent } from "../../components/usuario-header/usuario-header.component";
 
 @Component({
   selector: 'app-usuario',
@@ -59,7 +60,8 @@ import { UsuarioService } from 'src/app/services/usuario.service';
     IonLabel,
     IonSearchbar,
     IonMenuToggle,
-  ],
+    UsuarioHeaderComponent
+],
 })
 export class UsuarioPage implements OnInit {
 
