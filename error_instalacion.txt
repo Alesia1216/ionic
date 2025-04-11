@@ -1,0 +1,2 @@
+java.nio.file.AccessDeniedException: C:\Users\desarrollo1\AppData\Local\Android\Sdk\.temp\PackageOperation01\unzip\emulator\lib64\gles_swiftshader\libGLES_CM.dll
+Warning: An error occurred during installation: C:\Users\desarrollo1\AppData\Local\Android\Sdk\.temp\PackageOperation01\unzip\emulator\lib64\gles_swiftshader\libGLES_CM.dll.

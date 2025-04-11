@@ -1,0 +1,85 @@
+IONIC
+
+instalar android studio (codex para ios)
+
+- Usa capacitor (capa nativa para interactuar con el dispositivo movil)
+
+ionic start ejemplo blank --type=angular-standalone -> comando para inicializar un nuevo proyecto
+
+ionic serve para compilar
+
+ionic build para desplegar
+
+ionic capacitor add/build android/ios para hacer que deje de ser solo app web y sea multiplataforma
+
+
+orden de ramas
+----------------
+-mantenimiento basico
+-mantenimiento usuarios
+-one signal 01
+-primera version
+-icon and splash
+-mensaje completo
+-main
+
+Clonar repositorio dos veces uno como referencia y otro para tocar (git checkout para bailar entre ramas)
+
+enviroment.prod (url de la api para las solicitudes)
+
+ ---------------
+| OBSERVACIONES |
+ ---------------
+
+En la PRIMERA rama (MANTENIMIENTO BASICO) solo estan:
+	- La pagina de inicio (home)
+		-Con el menu en la parte superior (puesto en app component)
+			- Con un desplegable (boton hamburguesa)
+				- Apartado home
+				- Apartado vehiculos
+					-Con el CRUD de vehiculos (listados, crear, editar y borrar)
+					-Con el filtro 
+			- Con el boton de logout
+	- El login (antes de mostrarte nada)
+(lo primero npm install)
+
+En la SEGUNDA rama (MANTENIMIENTO USUARIOS) se ha añadido:
+				- Apartado de usuarios en el menu
+					-Con su CRUD (listados, crear, editar y borrar)
+					-Con el filtro
+
+En la TERCERA rama (ONE SIGNAL 01):
+		- Un servicio de notificacion
+		- Cambia  el menu segun el tipo de usuario
+(
+Para ello voy a hacer 
+npm install onesignal-cordova-plugin
+npm install @awesome-cordova-plugins/onesignal
+
+ionic add android 
+descargar android studio
+ionic capacitor build android (hace el build, el sync y el open)
+)
+
+En la CUARTA rama (PRIMERA VERSION):
+				- Apartado mensajes
+					-Con su CRUD (listados,ver detalles, crear, editar y borrar)
+					-Con el filtro
+En la QUINTA rama (ICON AND SPLASH):
+	- Hasta ahora todo eran pages. Ahora componente usuario-header (
+									- usa el storage service
+									- es una toolbar
+									- se pone en todos lados usando su selector
+									)
+En la SEXTA rama (MENSAJE COMPLETO):
+				-Footer en el apartado mensajes (leido por...)
+
+
+En la ULTIMA (MAIN):
+	- Componente footer	(
+				- se pone en todos lados usando su selector
+				)
+
+
+
+
